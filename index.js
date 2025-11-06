@@ -4,9 +4,9 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
 // Routes
-const authRoutes = require('./routes/authRoutes');
-const studentRoutes = require('./routes/studentRoutes');
-const examRoutes = require('./routes/examRoutes');
+const authRoutes = require('./routes/authroutes.js');
+const studentRoutes = require('./routes/studentRoutes.js');
+const examRoutes = require('./routes/examRoutes.js');
 
 
 dotenv.config();
