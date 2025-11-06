@@ -5,7 +5,8 @@ const connectDB = require('./config/db');
 
 // // Routes
 const authRoutes = require('./routes/authroutes.js');
-const studentRoutes = require('./routes/studentRoutes.js');
+// const studentRoutes = require('./routes/studentRoutes.js');
+const studentRoutes = require('./');
 const examRoutes = require('./routes/examRoutes.js');
 
 
@@ -25,10 +26,13 @@ app.use('/api/students', studentRoutes);
 app.use('/api/exams', examRoutes);
 
 // Basic test route
-app.get('/', (req, res) => {
-  res.json({ message: 'Exam System Backend Running!' });
+app.get("/", (req, res) => {
+  res.send("Hello from Express on Vercel!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
+
+module.exports = app;
