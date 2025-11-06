@@ -5,8 +5,8 @@ const connectDB = require('./config/db');
 
 // // Routes
 const authRoutes = require('./routes/authroutes.js');
-// const studentRoutes = require('./routes/studentRoutes.js');
-const studentRoutes = require('./');
+const studentRoutes = require('./routes/studentRoutes.js');
+
 const examRoutes = require('./routes/examRoutes.js');
 
 
