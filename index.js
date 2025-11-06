@@ -3,10 +3,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
-// Routes
-const authRoutes = require('./routes/authroutes.js');
-const studentRoutes = require('./routes/studentRoutes.js');
-const examRoutes = require('./routes/examRoutes.js');
+// // Routes
+// const authRoutes = require('./routes/authroutes.js');
+// const studentRoutes = require('./routes/studentRoutes.js');
+// const examRoutes = require('./routes/examRoutes.js');
 
 
 dotenv.config();
@@ -19,10 +19,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/students', studentRoutes);
-app.use('/api/exams', examRoutes);
+// // Routes
+// app.use('/api/auth', authRoutes);
+// app.use('/api/students', studentRoutes);
+// app.use('/api/exams', examRoutes);
 
 // Basic test route
 app.get('/', (req, res) => {
