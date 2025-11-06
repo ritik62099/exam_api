@@ -12,7 +12,7 @@ const {
   deleteStudentResult,
   publishExam,
   unpublishExam
-} = require('../controllers/examController.js');
+} = require('../controllers/examControllers.js');
 
 const router = express.Router();
 
