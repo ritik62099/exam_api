@@ -1,5 +1,5 @@
-const Exam = require('../models/Exam');
-const Result = require('../models/Result');
+const Exam = require('../models/Exam.js');
+const Result = require('../models/Result.js');
 
 // Create Exam
 const createExam = async (req, res) => {

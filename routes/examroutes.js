@@ -1,5 +1,5 @@
 const express = require('express');
-const auth = require('../middleware/auth');
+const auth = require('../middleware/auth.js');
 const {
   createExam,
   getExams,
@@ -12,7 +12,7 @@ const {
   deleteStudentResult,
   publishExam,
   unpublishExam
-} = require('../controllers/examController');
+} = require('../controllers/examController.js');
 
 const router = express.Router();
 

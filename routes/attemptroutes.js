@@ -6,8 +6,8 @@ const {
   saveAttempt, 
   submitAttempt,
   getMyAttempts
-} = require('../controllers/attemptcontroller');
-const auth = require('../middleware/auth');
+} = require('../controllers/attemptcontroller.js');
+const auth = require('../middleware/auth.js');
 
 const router = express.Router();
 

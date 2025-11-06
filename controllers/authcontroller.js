@@ -1,5 +1,5 @@
-const Student = require('../models/Student');
-const { comparePassword } = require('../utils/passwordUtils');
+const Student = require('../models/Student.js');
+const { comparePassword } = require('../utils/passwordUtils.js');
 
 // Fixed admin credentials
 const ADMIN_USERNAME = 'admin';

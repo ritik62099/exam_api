@@ -1,6 +1,6 @@
 // backend/controllers/studentController.js
-const Student = require('../models/Student');
-const { hashPassword } = require('../utils/passwordUtils');
+const Student = require('../models/Student.js');
+const { hashPassword } = require('../utils/passwordUtils.js');
 
 const createStudent = async (req, res) => {
   const { username, password } = req.body; // ✅ ye sirf backend mein valid hai

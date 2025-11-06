@@ -1,6 +1,6 @@
 // backend/routes/studentRoutes.js
 const express = require('express');
-const { createStudent, getAllStudents } = require('../controllers/studentController');
+const { createStudent, getAllStudents } = require('../controllers/studentController.js');
 
 const router = express.Router();
 
