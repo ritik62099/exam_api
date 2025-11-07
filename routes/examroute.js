@@ -19,6 +19,7 @@ const router = express.Router();
 // 🔹 PUBLIC ROUTES (no auth, no :id conflict)
 router.post('/', createExam);
 router.get('/active', getActiveExams);
+router.get('/:id', getExamById);
 router.post('/submit', submitExam);
 
 // 🔹 PROTECTED STATIC ROUTES (must come BEFORE :id)
@@ -28,10 +29,10 @@ router.get('/results', getStudentResults);                // ✅ BEFORE :id
 router.get('/results/:username', getStudentResults);     // ✅ BEFORE :id
 router.delete('/results', deleteStudentResult);  
 
-
+// router.get('/:id', getExamById); 
 // 🔹 DYNAMIC ROUTES (last)
 router.get('/', getExams);
-router.get('/:id', getExamById); 
+// router.get('/:id', getExamById); 
 router.put('/:id', updateExam);
 router.delete('/:id', deleteExam);
 router.patch('/:id/publish', publishExam);
