@@ -124,34 +124,6 @@ const submitExam = async (req, res) => {
 
 
 
-
-// Get student results (with visibility check)
-const getStudentResults = async (req, res) => {
-  try {
-    const { username } = req.params;
-    const isStudent = req.userRole === 'student'; // We'll pass role later
-
-    let results;
-    if (username) {
-      results = await Result.find({ studentUsername: username })
-        .populate('examId', 'title showResults'); // 🔹 Load showResults flag
-    } else {
-      results = await Result.find()
-        .populate('examId', 'title showResults');
-    }
-
-    // 🔹 If student, hide results where showResults = false
-    if (isStudent) {
-      results = results.filter(r => r.examId?.showResults !== false);
-    }
-
-    res.json({ success: true, results });
-  } catch (error) {
-    console.error('Get results error:', error);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
-};
-
 // 🔹 Delete student's result AND re-activate exam
 const deleteStudentResult = async (req, res) => {
   try {
@@ -231,4 +203,37 @@ const unpublishExam = async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };
+
+
+const getStudentResults = async (req, res) => {
+  try {
+    
+
+    const { username } = req.params;
+    const role = req.userRole || req.user?.role || 'student';
+    const isStudent = role === 'student';
+
+    let results = [];
+
+    if (username) {
+      results = await Result.find({ studentUsername: username })
+        .populate('examId', 'title showResults');
+    } else {
+      results = await Result.find().populate('examId', 'title showResults');
+    }
+
+    results = results.filter(r => r.examId !== null);
+
+    if (isStudent) {
+      results = results.filter(r => r.examId.showResults !== false);
+    }
+
+    return res.json({ success: true, results });
+  } catch (error) {
+    console.error('❌ Get results error:', error);
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+
 module.exports = { createExam, getExams, updateExam, deleteExam, getExamById,getActiveExams,submitExam,getStudentResults ,deleteStudentResult , publishExam,unpublishExam};
