@@ -82,5 +82,55 @@ const getAllStudents = async (req, res) => {
   }
 };
 
-module.exports = { createStudent, getAllStudents };
+
+
+// Update student (username and/or password)
+const updateStudent = async (req, res) => {
+  try {
+    const { id } = req.params; // use Mongo _id
+    const { username, password } = req.body;
+
+    const update = {};
+    if (username) update.username = username;
+    if (password) {
+      update.password = await hashPassword(password);
+      // only for demo purposes keep plainPassword field
+      update.plainPassword = password;
+    }
+
+    const updated = await Student.findByIdAndUpdate(id, update, { new: true, runValidators: true })
+      .select('username registrationNumber plainPassword');
+
+    if (!updated) {
+      return res.status(404).json({ success: false, message: 'Student not found' });
+    }
+
+    res.json({ success: true, message: 'Student updated', student: updated });
+  } catch (err) {
+    console.error('Update student error:', err);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// Delete student by id
+const deleteStudent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const removed = await Student.findByIdAndDelete(id);
+
+    if (!removed) {
+      return res.status(404).json({ success: false, message: 'Student not found' });
+    }
+
+    res.json({ success: true, message: 'Student deleted' });
+  } catch (err) {
+    console.error('Delete student error:', err);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+
+
+
+module.exports = { createStudent, getAllStudents,updateStudent, deleteStudent };
 
